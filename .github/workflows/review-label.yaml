@@ -21,7 +21,7 @@ jobs:
             console.log('ISSUE', issue)
 
             github.rest.issues.addLabels({
-              issue_number: context.issue.number,
+              issue_number: issue.data.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
               labels: ['triage/review']
