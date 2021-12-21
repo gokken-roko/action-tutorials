@@ -14,11 +14,11 @@ jobs:
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
-            console.log(context)
+            console.log('CONTEXT', context)
 
             const issue_url = context.payload.project_card.content_url
             const issue = await github.request(issue_url)
-            console.log(issue)
+            console.log('ISSUE', issue)
 
             github.rest.issues.addLabels({
               issue_number: context.issue.number,
