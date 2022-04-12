@@ -1,0 +1,22 @@
+name: "stale"
+
+on:
+  workflow_dispatch:
+
+jobs:
+  stale:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/stale@v4
+        with:
+          only-labels: "triage/stale-test"
+          stale-issue-message: |
+            stale に分類されました。この Issue は何もしなければ Close されます。
+            - stale
+            - close
+          stale-pr-message: =
+            stale に分類されました。この PR は何もしなければ Close されます。
+            - stale
+            - close
+          days-before-stale: 1
+          days-before-close: 1
