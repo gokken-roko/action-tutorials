@@ -14,9 +14,9 @@ jobs:
             stale に分類されました。この Issue は何もしなければ Close されます。
             - stale
             - close
-          stale-pr-message: =
+          stale-pr-message: |
             stale に分類されました。この PR は何もしなければ Close されます。
             - stale
             - close
-          days-before-stale: 1
+          days-before-stale: 0
           days-before-close: 1
