@@ -17,8 +17,10 @@ jobs:
         run: |
           REGEX="\[[Xx]\] チェックボックス01\."
     
+          echo ${{ github.event.issue.body }}
+
           pcregrep -o1 -M "$REGEX" <<EOF
-          ${{ github.event.pull_request.body }}
+          ${{ github.event.issue.body }}
           EOF
 
       - name: debug
