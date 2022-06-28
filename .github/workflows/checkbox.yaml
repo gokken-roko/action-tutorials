@@ -7,6 +7,11 @@ jobs:
   checkbox01:
     runs-on: ubuntu-latest
     steps:
+      - name: install
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y pcregrep
+
       - id: checkbox01
         continue-on-error: true
         run: |
@@ -18,7 +23,8 @@ jobs:
 
       - name: debug
         run: echo $CONTEXT
-        env: ${{ toJSON(steps.checkbox01) }}
+        env: 
+          CONTEXT: ${{ toJSON(steps.checkbox01) }}
 
       - name: Post Comment
         if: steps.checkbox01.outcome == 'success'
