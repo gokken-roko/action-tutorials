@@ -7,21 +7,11 @@ jobs:
   checkbox01:
     runs-on: ubuntu-latest
     steps:
-      - name: install
-        run: |
-          sudo apt-get update -y
-          sudo apt-get install -y pcregrep
-
       - id: checkbox01
         continue-on-error: true
         run: |
-          REGEX="\[[Xx]\] チェックボックス01\."
-    
-          echo ${{ github.event.issue.body }}
-
-          pcregrep -o1 -M "$REGEX" <<EOF
-          ${{ github.event.issue.body }}
-          EOF
+          export REGEX="\[[Xx]\] チェックボックス01"
+          echo ${{ github.event.issue.body }} | grep -E "$REGEX"
 
       - name: debug
         run: echo $CONTEXT
