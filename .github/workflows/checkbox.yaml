@@ -11,7 +11,7 @@ jobs:
         continue-on-error: true
         run: |
           export REGEX="\[[Xx]\] チェックボックス01"
-          echo ${{ github.event.issue.body }} | grep -E "$REGEX"
+          echo "${{ github.event.issue.body }}" | grep -E "$REGEX"
 
       - name: debug
         run: echo $CONTEXT
