@@ -1,0 +1,37 @@
+name: checkbox
+on:
+  issues:
+    types:
+      - edited
+jobs:
+  checkbox01:
+    runs-on: ubuntu-latest
+    steps:
+      - id: checkbox01
+        continue-on-error: true
+        run: |
+          REGEX="\[[Xx]\] チェックボックス01\."
+    
+          pcregrep -o1 -M "$REGEX" <<EOF
+          ${{ github.event.pull_request.body }}
+          EOF
+
+      - name: debug
+        run: echo $CONTEXT
+        env: ${{ toJSON(steps.checkbox01) }}
+
+      - name: Post Comment
+        if: steps.checkbox01.outcome == 'success'
+        uses: actions/github-script@v5.0.0
+        env:
+          MESSAGE: |
+            チェックボックス01 がチェックされました
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: process.env.MESSAGE
+            })
