@@ -17,8 +17,8 @@ jobs:
         env:
           REGEX: '\[[Xx]\] チェックボックス01'
         run: |
-          diff <(echo '${{ github.event.changes.body.from }}') <(echo '${{ github.event.issue.body }}')
-          echo "${{ github.event.issue.body }}" | grep -E "$REGEX"
+          diff <(echo '${{ github.event.changes.body.from }}') <(echo '${{ github.event.issue.body }}') | grep ">" | tee diff.txt
+          grep -E "$REGEX" diff.txt
 
       - name: debug
         run: echo $CONTEXT
