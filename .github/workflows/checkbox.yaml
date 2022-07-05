@@ -8,6 +8,10 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ contains(github.event.issue.labels.*.name, 'triage/test') }}
     steps:
+      - name: debug
+        run: echo $CONTEXT
+        env: 
+          CONTEXT: ${{ toJSON(github.event) }}
       - id: checkbox01
         continue-on-error: true
         env:
