@@ -5,12 +5,14 @@ on:
       - edited
 jobs:
   checkbox01:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-lates
+    if: github.event.label.name == 'triage/test'
     steps:
       - id: checkbox01
         continue-on-error: true
+        env:
+          REGEX: '\[[Xx]\] チェックボックス01'
         run: |
-          export REGEX="\[[Xx]\] チェックボックス01"
           echo "${{ github.event.issue.body }}" | grep -E "$REGEX"
 
       - name: debug
