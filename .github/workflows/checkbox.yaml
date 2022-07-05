@@ -5,8 +5,8 @@ on:
       - edited
 jobs:
   checkbox01:
-    runs-on: ubuntu-lates
-    if: github.event.label.name == 'triage/test'
+    runs-on: ubuntu-latest
+    if: ${{ github.event.label.name == 'triage/test' }}
     steps:
       - id: checkbox01
         continue-on-error: true
