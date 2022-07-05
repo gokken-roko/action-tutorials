@@ -15,8 +15,8 @@ jobs:
       - id: checkbox01
         continue-on-error: true
         env:
-          FROM: ${{ github.event.changes.body.from }}
-          BODY: ${{ github.event.issue.body }}
+          FROM: '${{ github.event.changes.body.from }}'
+          BODY: '${{ github.event.issue.body }}'
           REGEX: '\[[Xx]\] チェックボックス01'
         run: |
           diff <(echo $FROM) <(echo $BODY)
