@@ -6,7 +6,7 @@ on:
 jobs:
   checkbox01:
     runs-on: ubuntu-latest
-    if: ${{ github.event.label.name == 'triage/test' }}
+    if: ${{ (contains(github.event.issue.labels.*.name, 'triage/review') }}
     steps:
       - id: checkbox01
         continue-on-error: true
