@@ -1,0 +1,29 @@
+name: issue assign comment
+on:
+  issues:
+    types:
+      - assigned
+jobs:
+  comment:
+    runs-on: ubuntu-latest
+    if: ${{ contains(github.event.issue.labels.*.name, 'triage/test') }}
+    steps:
+      - name: debug
+        run: echo $CONTEXT
+        env: 
+          CONTEXT: ${{ toJSON(github.event) }}
+
+      - name: post comment
+        uses: actions/github-script@v6.1.0
+        env:
+          MESSAGE: |
+            issue に assign されました
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: process.env.MESSAGE
+            })
