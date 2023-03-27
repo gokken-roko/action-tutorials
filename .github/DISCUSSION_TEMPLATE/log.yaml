@@ -1,0 +1,27 @@
+title: "[Log] <YYYYMMDD> "
+labels: ["kind/log"]
+# https://docs.github.com/en/discussions/managing-discussions-for-your-community/syntax-for-discussion-category-forms
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This is text that will show up in the template!
+  - type: textarea
+    id: overview
+    attributes:
+      label: 概要
+      description: "概要の説明"
+      value: |
+        1.
+        2.
+        3.
+        ...
+    validations:
+      required: true
+  - type: checkboxes
+    attributes:
+      label: Check that box!
+      options:
+        - label: This one!
+          required: true
+        - label: I won't stop you if you check this one, too
